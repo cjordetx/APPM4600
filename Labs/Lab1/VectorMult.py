@@ -2,6 +2,7 @@ Last login: Thu Aug 29 13:19:32 on ttys000
 (base) christianordetx@Christians-MacBook-Pro ~ % python3
 Python 3.11.5 (main, Sep 11 2023, 08:31:25) [Clang 14.0.6 ] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
+# This code computes the multiplication of 
 >>> import numpy as np
 >>> import matplotlib.pyplot as plt
 >>> X = np.linspace(0, 2 * np.pi, 100)
