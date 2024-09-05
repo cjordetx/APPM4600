@@ -2,7 +2,10 @@ Last login: Thu Aug 29 13:19:32 on ttys000
 (base) christianordetx@Christians-MacBook-Pro ~ % python3
 Python 3.11.5 (main, Sep 11 2023, 08:31:25) [Clang 14.0.6 ] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
-# This code computes the multiplication of 
+
+# This code computes the multiplication of two different vectors through matrix multiplication
+# Imported the packages numpy as np and matplotlib.pyplot as plt
+
 >>> import numpy as np
 >>> import matplotlib.pyplot as plt
 >>> X = np.linspace(0, 2 * np.pi, 100)
@@ -77,6 +80,9 @@ Traceback (most recent call last):
   File "/Users/christianordetx/anaconda3/lib/python3.11/site-packages/matplotlib/axes/_base.py", line 504, in _plot_args
     raise ValueError(f"x and y must have same first dimension, but "
 ValueError: x and y must have same first dimension, but have shapes (1, 10) and (10,)
+
+# keep geeting an error that the dimensions of the vectors are not compatible with eachother for vector multiplication
+ 
 >>> plt.semilogy(x, w)
 [<matplotlib.lines.Line2D object at 0x1387b9010>]
 >>> plt.show(block = False)
@@ -96,6 +102,9 @@ Text(64.52680558946396, 0.5, 'w')
 >>> plt.semilogy(x, s)
 [<matplotlib.lines.Line2D object at 0x14b0c9850>]
 >>> plt.legend(block = False)
+
+# Obtain an unexpected error trying to create a legend
+
 No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -110,6 +119,9 @@ Traceback (most recent call last):
            ^^^^^^^^^^^^^^^^^^^^^
 TypeError: Legend.__init__() got an unexpected keyword argument 'block'
 >>> plt.legend()
+
+# Obtain legend error again. Do I have to add in legend art directly?
+
 No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 <matplotlib.legend.Legend object at 0x14fe4ba10>
 >>> plt.semilogy(x, w)
