@@ -1,0 +1,25 @@
+# Homework 1
+## Christian Ordetx
+
+import numpy as np
+import matplotlib.pyploy as plt
+
+### Problem 1
+
+#### part i.
+
+x = [1.920 : 0.001 : 2.090];
+papprox = x ** 9 - 18 * x ** 8 + 144 * x ** 7 - 672 * x ** 6 + 2016 * x ** 5 - 4032 * x *8 4 + 5376 * x ** 3 - 4608 * x ** 2 + 2304 * x - 512;
+
+plt.plot(x, papprox)
+plt.show()
+
+#### part ii.
+
+p = (x - 2 ) ** 9;
+
+plt.plot(x, p)
+plt.show
+
+#### part iii.
+
