@@ -25,7 +25,6 @@ f = 15
 p = 0
 
 theta = np.linspace(0, 2 * math.pi, 1000)
-print(theta)
 x = r * (1 + deltar * np.sin(f * theta + p)) * np.cos(theta)
 yb = r * (1 + deltar * np.sin(f * theta + p)) * np.sin(theta)
 
