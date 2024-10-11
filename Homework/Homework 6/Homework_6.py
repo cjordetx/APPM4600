@@ -1,6 +1,5 @@
 import numpy as np
 import math
-import time
 from numpy.linalg import inv
 from numpy.linalg import norm
 
@@ -11,6 +10,8 @@ def driver():
     f2 = lambda x,y: np.exp(x) + y - 1
 
     x0 = np.array([1, 1])
+
+    print(np.exp(x0[0]))
 
     Nmax = 100
     tol = 1e-10
