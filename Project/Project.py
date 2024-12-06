@@ -12,19 +12,20 @@ def driver():
     f = lambda x: np.sin(x)
     a = -1
     b = 1
-    N = 10
-    x_values = np.cos((2 * np.arange(1, N + 1) - 1) * np.pi / (2 * N))
+    N = 15
+    x_values = (a+b)/2 + (a-b) * (np.cos((2 * np.arange(1, N + 2) - 1) * np.pi / (2 * N)))/2
     f_values = f(x_values)
+    print(f_values[5])
     Neval = 1000
-    x_eval = np.linspace(a, b, Neval + 1)
+    x_eval = np.linspace(a, b, Neval + 2)
     fex = f(x_eval)
     coefficients = coeffs(x_values, f_values, N)
-    x_eval = np.linspace(a, b, Neval + 1)
+    x_eval = np.linspace(a, b, Neval + 2)
     f_approx = eval_monomial(x_eval, coefficients, N, Neval)
-    err = abs(fex - f_approx)
-    print(err)
+    err = np.max(f_approx - fex)
+    print('f_approx', err)
 
-    remez_coefficients = remez_coeffs(x_values, coefficients, N, err)
+    remez_coefficients = remez_coeffs(x_values, f_values, N, err)
     f_remez = eval_monomial(x_values, remez_coefficients, N, Neval)
     err_remez = abs(fex - f_remez)
     plt.plot(x_eval, fex, 'rs-', label='exact')
@@ -47,14 +48,14 @@ def driver():
     plt.show()
 
 def vandermonde_matrix(x_values, N):
-    V = np.zeros((N, N))
+    V = np.zeros((N+1, N+1))
 
     ''' fill the first column'''
-    for j in range(N):
+    for j in range(N+1):
         V[j][0] = 1.0
 
-    for i in range(1, N):
-        for j in range(N):
+    for i in range(1, N+1):
+        for j in range(N+1):
             V[j][i] = x_values[j] ** i
     return V
 
@@ -64,7 +65,7 @@ def coeffs(x_values, f_values,N):
     return a
 
 def eval_monomial(x_eval, coefficients, N, Neval):
-    y_eval = coefficients[0] * np.ones(Neval + 1)
+    y_eval = coefficients[0] * np.ones(Neval + 2)
 
     #    print('yeval = ', yeval)
 
@@ -78,13 +79,14 @@ def eval_monomial(x_eval, coefficients, N, Neval):
 
     return y_eval
 
-def remez_vandermonde_matrix(x_values, N, err):
-    V = np.zeros((N + 1, N + 1))
+def remez_vandermonde_matrix(x_values, N, f_values, err):
+    V = np.zeros((N + 2, N + 2))
+    #V[0][N+2] = x_values[0] - f_values[0]
 
     ''' fill the first column'''
-    for j in range(N + 1):
+    for j in range(N+1):
         V[j][0] = 1.0
-        V[j][N+1] = err[j]
+        V[j][N+1] = err * (-1) ** j
 
 
     for i in range(1, N):
@@ -93,7 +95,7 @@ def remez_vandermonde_matrix(x_values, N, err):
     return V
 
 def remez_coeffs(x_values, f_values,N, err):
-    V = remez_vandermonde_matrix(x_values, N, err)
+    V = remez_vandermonde_matrix(x_values, N, f_values, err)
     a = inv(V) @ f_values
     return a
 
